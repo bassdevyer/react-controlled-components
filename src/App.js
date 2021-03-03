@@ -3,17 +3,22 @@ import './App.css';
 
 function App() {
 
-  const [state, setState] = useState({ value: 'coconut' })
+  const [state, setState] = useState({
+    isGoing: true,
+    numberOfGuests: 2
+  })
 
-  const handleChange = (event) => {
-    setState({ value: event.target.value })
+
+  const handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    setState({
+      ...state,
+      [name]: value
+    });
   }
-
-  const handleSubmit = (event) => {
-    alert('A name was submitted: ' + state.value);
-    event.preventDefault();
-  }
-
 
   /*
   React uses a value attribute on the root select tag.
@@ -21,17 +26,24 @@ function App() {
    */
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label>
-        Pick your favorite flavor:
-        <select value={state.value} onChange={handleChange}>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
-          <option value="mango">Mango</option>
-        </select>
+        Is going:
+        <input
+          name="isGoing"
+          type="checkbox"
+          checked={state.isGoing}
+          onChange={handleInputChange}/>
       </label>
-      <input type="submit" value="Submit"/>
+      <br/>
+      <label>
+        Number of guests:
+        <input
+          name="numberOfGuests"
+          type="number"
+          value={state.numberOfGuests}
+          onChange={handleInputChange}/>
+      </label>
     </form>
   );
 }
