@@ -3,10 +3,10 @@ import './App.css';
 
 function App() {
 
-  const [state, setState] = useState({ value: 'Please write an essay about your favorite DOM element.' })
+  const [state, setState] = useState({ value: 'coconut' })
 
   const handleChange = (event) => {
-    setState({value: event.target.value})
+    setState({ value: event.target.value })
   }
 
   const handleSubmit = (event) => {
@@ -15,11 +15,21 @@ function App() {
   }
 
 
+  /*
+  React uses a value attribute on the root select tag.
+  This is more convenient in a controlled component because you only need to update it in one place.
+   */
+
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Essay:
-        <textarea value={state.value} onChange={handleChange} />
+        Pick your favorite flavor:
+        <select value={state.value} onChange={handleChange}>
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+          <option value="mango">Mango</option>
+        </select>
       </label>
       <input type="submit" value="Submit"/>
     </form>
