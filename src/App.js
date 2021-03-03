@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react'
 import './App.css';
 
 function App() {
+
+  const [state, setState] = useState({ value: '' })
+
+  const handleChange = (event) => {
+    setState({value: event.target.value})
+  }
+
+  const handleSubmit = (event) => {
+    alert('A name was submitted: ' + state.value);
+    event.preventDefault();
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" value={state.value} onChange={handleChange}/>
+      </label>
+      <input type="submit" value="Submit"/>
+    </form>
   );
 }
 
