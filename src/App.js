@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
 
-  const [state, setState] = useState({ value: '' })
+  const [state, setState] = useState({ value: 'Please write an essay about your favorite DOM element.' })
 
   const handleChange = (event) => {
     setState({value: event.target.value})
@@ -18,8 +18,8 @@ function App() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Name:
-        <input type="text" value={state.value} onChange={handleChange}/>
+        Essay:
+        <textarea value={state.value} onChange={handleChange} />
       </label>
       <input type="submit" value="Submit"/>
     </form>
